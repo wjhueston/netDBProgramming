@@ -13,57 +13,86 @@ namespace Assign_01_CSVIO
         {
             string file = ("tickets.csv");
             int outerMenu;
+            string[] elements;
+            int idCounter = 0;
             do
             {
                 Console.WriteLine("1. Read");
                 Console.WriteLine("2. Write");
-                outerMenu = Convert.ToInt32(Console.ReadKey());
+                outerMenu = Convert.ToInt32(Console.ReadLine());
                 if(outerMenu == 1)
                 {
-                    //TODO Read Logic
+                    
                     if (File.Exists(file))
                     {
                         StreamReader sr = new StreamReader(file);
-                        while (!sr.EndOfStream)
-                        {
-                            string currentLine = sr.ReadLine();
-                            string[] elements = currentLine.Split(',');
-                            Console.WriteLine($"ID: {elements[0]}");
-                            Console.WriteLine($"Summary: {elements[1]}");
-                            Console.WriteLine($"Status: {elements[2]}");
-                            Console.WriteLine($"Priority: {elements[3]}");
-                            Console.WriteLine($"Submitter: {elements[4]}");
-                            Console.WriteLine($"Assigned: {elements[5]}");
-                            Console.WriteLine($"Watching: {elements[6]}");
-                            Console.WriteLine();
+                        using (sr) {
+                            string headLine = sr.ReadLine();
+                            while (!sr.EndOfStream)
+                            {
+                                string currentLine = sr.ReadLine();
+                                elements = currentLine.Split(',');
+                                Console.WriteLine($"ID: {elements[0]}");
+                                Console.WriteLine($"Summary: {elements[1]}");
+                                Console.WriteLine($"Status: {elements[2]}");
+                                Console.WriteLine($"Priority: {elements[3]}");
+                                Console.WriteLine($"Submitter: {elements[4]}");
+                                Console.WriteLine($"Assigned: {elements[5]}");
+                                Console.WriteLine($"Watching: {elements[6]}");
+                                Console.WriteLine();
+                                idCounter++;
+                            
+                            }
                         }
+                        sr.Close();
                     }
                     else
                     {
                         Console.WriteLine("File not found");
                     }
                 }
+
                 else
                 {
                     StreamWriter sw = new StreamWriter(file, append: true);
                     string innerMenu = "Y";
-                    while (innerMenu != "N")
+                    string summary;
+                    string status;
+                    string priority;
+                    string submitter;
+                    string assigned;
+                    string watching;
+                    for (int i = 0; i < 5; i++)
                     {
-                        for (int i=0; i < 5; i++)
-                        {
-                            Console.WriteLine("New Ticket?(Y/N)");
-                            innerMenu = Console.ReadLine();
-                            Console.WriteLine("Enter a summary");
-                            //More Write Code, experiment with CSV files
-                            //Steve
-                        }
-
-                        
+                        Console.WriteLine("Enter a summary");
+                        summary = Console.ReadLine();
+                        sw.Write($"{idCounter},{summary},");
+                        Console.WriteLine("Enter the status");
+                        status = Console.ReadLine();
+                        sw.Write($"{status},");
+                        Console.WriteLine("Enter the priority");
+                        priority = Console.ReadLine();
+                        sw.Write($"{priority},");
+                        Console.WriteLine("Enter the submitter");
+                        submitter = Console.ReadLine();
+                        sw.Write($"{submitter},");
+                        Console.WriteLine("Enter the assigned tech");
+                        assigned = Console.ReadLine();
+                        sw.Write($"{assigned},");
+                        Console.WriteLine("Enter the watchers");
+                        watching = Console.ReadLine();
+                        sw.Write($"{watching}\n");
+                        idCounter++;
+                        Console.WriteLine("New ticket? (Y/N)");
+                        innerMenu = Console.ReadLine();
+                        if(innerMenu == "N") { break; }
+                            
                     }
-
+                    sw.Close();
                 }
             }
             while (outerMenu == 1 || outerMenu == 2);
+            
         }
     }
 }
