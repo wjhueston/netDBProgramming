@@ -28,6 +28,7 @@ namespace Assign_01_CSVIO
                         StreamReader sr = new StreamReader(file);
                         using (sr) {
                             string headLine = sr.ReadLine();
+                            
                             while (!sr.EndOfStream)
                             {
                                 string currentLine = sr.ReadLine();
@@ -40,7 +41,7 @@ namespace Assign_01_CSVIO
                                 Console.WriteLine($"Assigned: {elements[5]}");
                                 Console.WriteLine($"Watching: {elements[6]}");
                                 Console.WriteLine();
-                                idCounter++;
+                                idCounter = Convert.ToInt32(elements[0]) + 1;
                             
                             }
                         }
@@ -64,28 +65,37 @@ namespace Assign_01_CSVIO
                     string watching;
                     for (int i = 0; i < 5; i++)
                     {
-                        Console.WriteLine("Enter a summary");
-                        summary = Console.ReadLine();
-                        sw.Write($"{idCounter},{summary},");
-                        Console.WriteLine("Enter the status");
-                        status = Console.ReadLine();
-                        sw.Write($"{status},");
-                        Console.WriteLine("Enter the priority");
-                        priority = Console.ReadLine();
-                        sw.Write($"{priority},");
-                        Console.WriteLine("Enter the submitter");
-                        submitter = Console.ReadLine();
-                        sw.Write($"{submitter},");
-                        Console.WriteLine("Enter the assigned tech");
-                        assigned = Console.ReadLine();
-                        sw.Write($"{assigned},");
-                        Console.WriteLine("Enter the watchers");
-                        watching = Console.ReadLine();
-                        sw.Write($"{watching}\n");
-                        idCounter++;
-                        Console.WriteLine("New ticket? (Y/N)");
-                        innerMenu = Console.ReadLine();
-                        if(innerMenu == "N") { break; }
+                        if(idCounter == 0)
+                        {
+                            Console.WriteLine("No ticket entries found, please read in entries.");
+                            break;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Enter a summary");
+                            summary = Console.ReadLine();
+                            sw.Write($"{idCounter},{summary},");
+                            Console.WriteLine("Enter the status");
+                            status = Console.ReadLine();
+                            sw.Write($"{status},");
+                            Console.WriteLine("Enter the priority");
+                            priority = Console.ReadLine();
+                            sw.Write($"{priority},");
+                            Console.WriteLine("Enter the submitter");
+                            submitter = Console.ReadLine();
+                            sw.Write($"{submitter},");
+                            Console.WriteLine("Enter the assigned tech");
+                            assigned = Console.ReadLine();
+                            sw.Write($"{assigned},");
+                            Console.WriteLine("Enter the watchers");
+                            watching = Console.ReadLine();
+                            sw.Write($"{watching}\n");
+                            idCounter++;
+                            Console.WriteLine("New ticket? (Y/N)");
+                            innerMenu = Console.ReadLine();
+                            if (innerMenu == "N") { break; }
+                        }
+                        
                             
                     }
                     sw.Close();
