@@ -12,7 +12,7 @@ namespace Assign02_MovieLibrary
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         static void Main(string[] args)
         {
-            string file = "movies.csv";
+            string file = "jeff.csv";
             string outerMenu;
 
 
