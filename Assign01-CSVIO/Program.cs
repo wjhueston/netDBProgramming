@@ -14,7 +14,7 @@ namespace Assign_01_CSVIO
             string file = ("tickets.csv");
             int outerMenu;
             string[] elements;
-            int idCounter = 0;
+            int idCounter = 1;
             do
             {
                 Console.WriteLine("1. Read");
@@ -65,13 +65,8 @@ namespace Assign_01_CSVIO
                     string watching;
                     for (int i = 0; i < 5; i++)
                     {
-                        if(idCounter == 0)
-                        {
-                            Console.WriteLine("No ticket entries found, please read in entries.");
-                            break;
-                        }
-                        else
-                        {
+                        
+                        
                             Console.WriteLine("Enter a summary");
                             summary = Console.ReadLine();
                             sw.Write($"{idCounter},{summary},");
@@ -94,7 +89,7 @@ namespace Assign_01_CSVIO
                             Console.WriteLine("New ticket? (Y/N)");
                             innerMenu = Console.ReadLine();
                             if (innerMenu == "N") { break; }
-                        }
+                        
                         
                             
                     }
