@@ -28,13 +28,8 @@ namespace Assign_01_CSVIO
             
             for(int i = 0; i<5; i++)
             {
-                if (idNumber == 0)
-                {
-                    Console.WriteLine("No ticket entries found, please read in entries.");
-                    break;
-                }
-                else
-                {
+                
+                
                     Console.WriteLine("Enter a summary");
                     summary = Console.ReadLine();
                     sw.Write($"{idNumber},{summary},");
@@ -57,7 +52,7 @@ namespace Assign_01_CSVIO
                     Console.WriteLine("New ticket? (Y/N)");
                     innerMenu = Console.ReadLine();
                     if (innerMenu == "N") { break; }
-                }
+                
             }
             sw.Close();
 
