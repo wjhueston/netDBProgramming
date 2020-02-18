@@ -23,7 +23,12 @@ namespace Assign_01_CSVIO
         }
         public void reader()
         {
+            
             string file = "tickets.csv";
+            if (!File.Exists(file))
+            {
+                File.Create(file);
+            }
             StreamWriter sw = new StreamWriter(file, append: true);
             
             for(int i = 0; i<5; i++)
