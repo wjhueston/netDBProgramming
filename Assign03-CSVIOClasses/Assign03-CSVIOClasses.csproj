@@ -50,6 +50,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="bin\Debug\csvio.exe.config" />
+    <None Include="bin\Debug\tickets.csv" />
+    <None Include="bin\Release\csvio.exe.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Assign01-CSVIO.exe" />
+    <Content Include="bin\Debug\csvio.exe" />
+    <Content Include="bin\Debug\csvio.pdb" />
+    <Content Include="bin\Debug\funIO.txt" />
+    <Content Include="bin\Release\csvio.exe" />
+    <Content Include="bin\Release\csvio.pdb" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
