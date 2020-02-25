@@ -1,3 +1,2 @@
 TicketID, Summary, Status, Priority, Submitter, Assigned, Watching, ProjectName, DueDate
-1,Get some code turned in,In Progress,High,Mark,Will,Neil,Multitype CSVIO,Sunday
-2,Code is looking better,In Progress,Medium,Will,Will Again,Mark|Jake,MultiType CSVIO,2/24/2020 7:15:00 PM
+1,Get some code turned in,In Progress,High,Mark,Will,Neil,Multitype CSVIO,2/24/2020
