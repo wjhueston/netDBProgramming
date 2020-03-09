@@ -16,7 +16,7 @@ namespace Assign_01_CSVIO
             string taskFile = ("tasks.csv");
             string outerMenu;
             string[] elements;
-            int idCounter = 0;
+            int idCounter = 1;
             do
             {
                 Console.WriteLine("1. Read");
@@ -45,7 +45,7 @@ namespace Assign_01_CSVIO
 
                                         string currentLine = sr.ReadLine();
                                         elements = currentLine.Split(',');
-                                        Console.Clear();
+                                        
                                         Ticket newTic = new Ticket(Convert.ToInt32(elements[0]), elements[1], elements[2], elements[3], elements[4], elements[5], elements[6]);
                                         Console.WriteLine($"ID: {newTic.idNumber}");
                                         Console.WriteLine($"Summary: {newTic.summary}");
@@ -67,6 +67,7 @@ namespace Assign_01_CSVIO
                                 StreamWriter sw = new StreamWriter(file);
                                 sw.WriteLine("TicketID, Summary, Status, Priority, Submitter, Assigned, Watching, Severity");
                                 Console.WriteLine("File was not found. Created new file.");
+                                idCounter = 1;
                                 sw.Close();
                             }
                             break;
@@ -198,7 +199,7 @@ namespace Assign_01_CSVIO
                                 Console.WriteLine();
                                 matchCount++;
                             }
-                            else if (ticPrioity.Contains(search))
+                            if (ticPrioity.Contains(search))
                             {
                                 //This is essentially copy-pasted code that I couldn't 
                                 //refactor without some extra time, so I apologize
@@ -212,7 +213,7 @@ namespace Assign_01_CSVIO
                                 Console.WriteLine();
                                 matchCount++;
                             }
-                            else if (ticStatus.Contains(search))
+                            if (ticSubmitter.Contains(search))
                             {
                                 Console.WriteLine($"ID: {newTic.idNumber}");
                                 Console.WriteLine($"Summary: {newTic.summary}");
@@ -224,10 +225,7 @@ namespace Assign_01_CSVIO
                                 Console.WriteLine();
                                 matchCount++;
                             }
-                            else
-                            {
-                                Console.WriteLine("No ticket results found\n");
-                            }
+                            
                         }
 
                     }
@@ -260,7 +258,7 @@ namespace Assign_01_CSVIO
                                 Console.WriteLine();
                                 matchCount++;
                             }
-                            else if (enhancePrioity.Contains(search))
+                            if (enhancePrioity.Contains(search))
                             {
                                 Console.WriteLine($"ID: {enhance.idNumber}");
                                 Console.WriteLine($"Summary: {enhance.summary}");
@@ -276,7 +274,7 @@ namespace Assign_01_CSVIO
                                 Console.WriteLine();
                                 matchCount++;
                             }
-                            else if (enhanceSubmitter.Contains(search))
+                            if (enhanceSubmitter.Contains(search))
                             {
                                 Console.WriteLine($"ID: {enhance.idNumber}");
                                 Console.WriteLine($"Summary: {enhance.summary}");
@@ -292,10 +290,7 @@ namespace Assign_01_CSVIO
                                 Console.WriteLine();
                                 matchCount++;
                             }
-                            else
-                            {
-                                Console.WriteLine("No enhancement results found\n");
-                            }
+                            
                         }
                     }
                     using (tr)
@@ -324,7 +319,7 @@ namespace Assign_01_CSVIO
                                 Console.WriteLine();
                                 matchCount++;
                             }
-                            else if (taskPrioity.Contains(search))
+                            if (taskPrioity.Contains(search))
                             {
                                 Console.WriteLine($"ID: {tasklet.idNumber}");
                                 Console.WriteLine($"Summary: {tasklet.summary}");
@@ -338,7 +333,7 @@ namespace Assign_01_CSVIO
                                 Console.WriteLine();
                                 matchCount++;
                             }
-                            else if (taskSubmitter.Contains(search))
+                            if (taskSubmitter.Contains(search))
                             {
                                 Console.WriteLine($"ID: {tasklet.idNumber}");
                                 Console.WriteLine($"Summary: {tasklet.summary}");
@@ -352,13 +347,11 @@ namespace Assign_01_CSVIO
                                 Console.WriteLine();
                                 matchCount++;
                             }
-                            else
-                            {
-                                Console.WriteLine("No task results found\n");
-                            }
+                            
                         }
                     }
-                    Console.WriteLine($"Total results found: {matchCount}");
+                    if (matchCount == 0) { Console.WriteLine("No results found"); }
+                    else { Console.WriteLine($"Total results found: {matchCount}"); }
                     }        
                             
                     
