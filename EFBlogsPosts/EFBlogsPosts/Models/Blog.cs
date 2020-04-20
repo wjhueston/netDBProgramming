@@ -12,7 +12,7 @@ namespace BlogsConsole.Models
 
         public Blog()
         {
-
+            
 
         }
 
