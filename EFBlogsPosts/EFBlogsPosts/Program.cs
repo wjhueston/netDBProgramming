@@ -94,13 +94,24 @@ namespace BlogsConsole
                             db.doSave();
                             break;
                         case "4":
+                            // Beginning of Issue
                             Console.WriteLine("Select the blog's posts to display:");
                             var postCheck = db.Blogs.OrderBy(b => b.Name);
+                            var postBlogId = db.Posts.OrderBy(p => p.BlogId);
+                            //Possible End of issue
                             List<int> postBlogArray = new List<int>();
+                            List<int> postArray = new List<int>();
+                            List<string> blogNameArray = new List<string>();
+                            foreach(var blogIdItem in postBlogId)
+                            {
+                                postArray.Add(blogIdItem.BlogId);
+                            }
                             foreach (var item in db.Blogs.OrderBy(b => b.BlogId))
                             {
                                 postBlogArray.Add(item.BlogId);
+                                blogNameArray.Add(item.Name);
                             }
+
                             Console.WriteLine("0. Posts from All Blogs");
                             foreach (var item in postCheck)
                             {
@@ -111,27 +122,34 @@ namespace BlogsConsole
                             var postSelect = Console.ReadLine();
                             if(postSelect == "0") 
                             {
-                                
-                                foreach(var item in postCheck)
+                                int k = 0;
+                                while (k != blogNameArray.Count()) 
                                 {
-                                    Console.WriteLine($"Blog: {item.Name}");
+                                    Console.WriteLine($"Blog: {blogNameArray[k]}");
                                     var postSearch = db.Posts.OrderBy(p => p.Title);
                                     
-                                    foreach (var postItem in postSearch)
+                                    foreach(var postItem in postSearch)
                                     {
-                                        if(postItem.BlogId == item.BlogId)
+                                        while(postBlogArray[k] == postItem.BlogId) 
                                         {
                                             Console.WriteLine($"Title: {postItem.Title}");
                                             Console.WriteLine($"Content: {postItem.Content}");
                                             Console.WriteLine();
                                         }
                                         
+
+
                                     }
                                     Console.WriteLine();
+                                    k++; 
                                 }
+                                
+                                  
                             }
+                            
                             else if (postBlogArray.Contains(Convert.ToInt32(postSelect))) 
                             {
+
                                 foreach(var item in postCheck)
                                 {
                                     if(item.BlogId == Convert.ToInt32(postSelect))
