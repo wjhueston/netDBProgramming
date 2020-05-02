@@ -10,11 +10,7 @@ namespace BlogsConsole.Models
 
         public List<Post> Posts { get; set; }
 
-        public Blog()
-        {
-            
-
-        }
+       
 
     }
 }
